@@ -4,8 +4,8 @@ const app = express();                  // Create a const app to use express
 
 
 
-port = process.env.PORT || 3000;       // Import the variable PORT from .env
-localhost = process.env.LOCALHOST || 'localhost';   // Import the variable LOCALHOST from .env
+const port = process.env.PORT || 3000;       // Import the variable PORT from .env
+const localhost = process.env.LOCALHOST || 'localhost';   // Import the variable LOCALHOST from .env
 
 // APP SETUP
 app.listen(port, localhost, () => {
@@ -39,7 +39,6 @@ app.get('/api/data', (req, res) => {
     }
     res.send(data);   // Display the data on the browser
 })
-
 
 
 
