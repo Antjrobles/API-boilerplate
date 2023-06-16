@@ -1,5 +1,6 @@
 const express = require('express');       // Import express
 require('dotenv').config();              // Import dotenv to use .env file
+const { specs, swaggerUi } = require('./openapi.js');   // Import specs and swaggerUi from openapi.js
 const app = express();                  // Create a const app to use express
 
 
@@ -38,7 +39,12 @@ app.get('/api/data', (req, res) => {
       hobbies: ['coding', 'reading', 'gaming', 'hiking', 'traveling'],
     }
     res.send(data);   // Display the data on the browser
-})
+});
+
+
+// SWAGGER
+app.use('/api-docs', swaggerUi.serve);
+app.get('/api-docs', swaggerUi.setup(specs, { explorer: true }));
 
 
 
