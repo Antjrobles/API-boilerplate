@@ -1,4 +1,31 @@
 const fs = require('fs');
+const express = require('express');
+const router = express.Router();
+
+const getHome = (req, res) => {
+  res.send('<h1>Welcome Home!</h1>');
+};
+
+const getLinks = (req, res) => {
+  const links = {
+    grid: 'https://codepen.io/Antjrobles/pen/qBJwjWV',
+    crypto_marquee: 'https://codepen.io/Antjrobles/pen/OJBzMEB',
+  };
+  res.send(links);
+};
+
+const getData = (req, res) => {
+  const data = {
+    name: 'John Doe',
+    age: 25,
+    city: 'San Diego',
+    state: 'California',
+    country: 'United States',
+    hobbies: ['coding', 'reading', 'gaming', 'hiking', 'traveling'],
+  };
+  res.send(data);
+};
+
 
 
 // Coverage by protected areas of important sites for mountain biodiversity
@@ -44,7 +71,7 @@ const getCodes = (req, res) => {
   res.json(codes);
 };
 
-module.exports = { getProtectedAreas, getCountries, getCodes };
+module.exports = { getHome, getLinks, getData, getProtectedAreas, getCountries, getCodes };
 
 
 

@@ -7,33 +7,12 @@ const router = express.Router();
 
 // ENDPOINTS
 
-// HOME //
-router.get('/', (req, res) => {
-  res.send('<h1>Welcome Home!</h1>');
-});
-
-// LINKS
-router.get('/api/links', (req, res) => {
-  const links = {
-    grid: 'https://codepen.io/Antjrobles/pen/qBJwjWV',
-    crypto_marquee: 'https://codepen.io/Antjrobles/pen/OJBzMEB',
-  };
-  res.send(links);
-});
+// ENDPOINTS
+router.get('/', controller.getHome);
+router.get('/api/links', controller.getLinks);
+router.get('/api/data', controller.getData);
 
 
-//DATA
-router.get('/api/data', (req, res) => {
-  const data = {
-    name: 'John Doe',
-    age: 25,
-    city: 'San Diego',
-    state: 'California',
-    country: 'United States',
-    hobbies: ['coding', 'reading', 'gaming', 'hiking', 'traveling'],
-  };
-  res.send(data);
-});
 
 // Coverage by protected areas of important sites for mountain biodiversity
 router.get('/api/protected_areas', controller.getProtectedAreas);
