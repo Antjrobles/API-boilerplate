@@ -1,10 +1,11 @@
 const express = require('express');
-const fs = require('fs');
+const controller = require('../controllers/controllers.js');
+
 
 const router = express.Router();
 
-// ENDPOINTS
 
+// ENDPOINTS
 
 // HOME //
 router.get('/', (req, res) => {
@@ -35,53 +36,9 @@ router.get('/api/data', (req, res) => {
 });
 
 // Coverage by protected areas of important sites for mountain biodiversity
-router.get('/api/protected_areas', (req, res) => {
-  const json = fs.readFileSync('./dataset/coverage.json');
-  const jsonData = JSON.parse(json);
-  res.json(jsonData);
-});
-
-
-// Countries
-const getCountries = (req, res) => {
-  const json = fs.readFileSync('./dataset/coverage.json');
-  const jsonData = JSON.parse(json);
-  const uniqueCountries = {};
-  const countries = [];
-
-  for (let i = 0; i < jsonData.length; i++) {
-    const country = jsonData[i].Entity;
-
-    if (!uniqueCountries[country]) {
-      uniqueCountries[country] = true;
-      countries.push(country);
-    }
-  }
-  res.json(countries);
-};
-router.get('/api/countries', getCountries);
-
-
-
-// CODE
-const getCodes = (req, res) => {
-
-  const json = fs.readFileSync('./dataset/coverage.json');
-  const jsonData = JSON.parse(json);
-  const uniqueCodes = {};
-  const codes = [];
-
-  for (let i = 0; i < jsonData.length; i++) {
-    const code = jsonData[i].Code;
-
-    if (!uniqueCodes[code]) {
-      uniqueCodes[code] = true;
-      codes.push(code);
-    }
-  }
-  res.json(codes);
-};
-router.get('/api/codes', getCodes);
+router.get('/api/protected_areas', controller.getProtectedAreas);
+router.get('/api/countries', controller.getCountries);
+router.get('/api/codes', controller.getCodes);
 
 
 

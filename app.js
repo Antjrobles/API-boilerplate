@@ -2,7 +2,6 @@ const express = require('express');       // Import express
 const app = express();                  // Create a const app to use express
 const morgan = require('morgan');         // Log every request to the console
 require('dotenv').config();              // Import dotenv to use .env file
-const fs = require('fs');                 // Import fs to read the file
 const routes = require('./routes/routes.js');  // Import routes.js
 
 
