@@ -1,14 +1,12 @@
 const express = require('express');
 const controller = require('../controllers/controllers.js');
-
-
 const router = express.Router();
 
 
 // ENDPOINTS
 
 // ENDPOINTS
-router.get('/', controller.getHome);
+// router.get('/', controller.getHome);
 router.get('/api/links', controller.getLinks);
 router.get('/api/data', controller.getData);
 

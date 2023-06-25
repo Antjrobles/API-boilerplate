@@ -29,16 +29,15 @@ const getData = (req, res) => {
 
 
 // Coverage by protected areas of important sites for mountain biodiversity
+const json = fs.readFileSync('./dataset/coverage.json');
+const jsonData = JSON.parse(json);
+
 const getProtectedAreas = (req, res) => {
-  const json = fs.readFileSync('./dataset/coverage.json');
-  const jsonData = JSON.parse(json);
   res.json(jsonData);
 };
 
 // Countries
 const getCountries = (req, res) => {
-  const json = fs.readFileSync('./dataset/coverage.json');
-  const jsonData = JSON.parse(json);
   const uniqueCountries = {};
   const countries = [];
 
@@ -55,8 +54,6 @@ const getCountries = (req, res) => {
 
 // CODE
 const getCodes = (req, res) => {
-  const json = fs.readFileSync('./dataset/coverage.json');
-  const jsonData = JSON.parse(json);
   const uniqueCodes = {};
   const codes = [];
 

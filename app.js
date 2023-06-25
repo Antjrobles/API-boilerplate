@@ -14,6 +14,8 @@ const localhost = process.env.LOCALHOST || 'localhost';   // Import the variable
 app.use(morgan('dev'));  // log every request to the console
 app.use(express.json());  // parse requests of content-type - application/json
 app.use('/', routes);          // Use routes.js
+app.use(express.static('public')); // Servir archivos estáticos desde la carpeta 'public'
+
 
 app.listen(port, localhost, () => {
   console.log(`server listening on ${port} on ${localhost}`)
