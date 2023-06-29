@@ -38,15 +38,25 @@ const getProtectedAreas = (req, res) => {
 
 // Countries
 const getCountries = (req, res) => {
-  const uniqueCountries = {};
-  const countries = [];
+  const { filter } = req.query;    // Obtain the filter parameter from the query string
+  const uniqueCountries = {};   // Create an object to store the unique countries
+  const countries = [];               // Create an array to store the countries
 
   for (let i = 0; i < jsonData.length; i++) {
     const country = jsonData[i].Entity;
 
+    // remove duplicates from the countries array
     if (!uniqueCountries[country]) {
       uniqueCountries[country] = true;
-      countries.push(country);
+
+      // check if the country includes the filter parameter
+      if (filter) {
+        if (country.toLowerCase().includes(filter.toLowerCase())) {
+          countries.push(country);
+        }
+      } else {
+        countries.push(country);
+      }
     }
   }
   res.json(countries);
