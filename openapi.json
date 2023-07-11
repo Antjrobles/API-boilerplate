@@ -1,0 +1,137 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Express API",
+      "description": "API built with Express",
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:{port}",
+        "variables": {
+          "port": {
+            "default": "3000",
+            "description": "The port number where the server is listening"
+          }
+        }
+      },
+      {
+        "url": "http://{localhost}:{port}",
+        "variables": {
+          "localhost": {
+            "default": "localhost",
+            "description": "The hostname where the server is running"
+          },
+          "port": {
+            "default": "3000",
+            "description": "The port number where the server is listening"
+          }
+        }
+      }
+    ],
+    "paths": {
+      "/": {
+        "get": {
+          "summary": "Home",
+          "description": "Display a welcome message",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "text/html": {
+                  "schema": {
+                    "type": "string",
+                    "example": "<h1>\"Welcome Home!\"</h1>"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/codepens": {
+        "get": {
+          "summary": "Get Codepens",
+          "description": "Retrieve a list of Codepen links",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "grid": {
+                        "type": "string",
+                        "description": "URL of the Grid Codepen",
+                        "example": "https://codepen.io/Antjrobles/pen/qBJwjWV"
+                      },
+                      "crypto_marquee": {
+                        "type": "string",
+                        "description": "URL of the Crypto Marquee Codepen",
+                        "example": "https://codepen.io/Antjrobles/pen/OJBzMEB"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/data": {
+        "get": {
+          "summary": "Get Data",
+          "description": "Retrieve a sample data object",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "description": "The name of the person",
+                        "example": "John Doe"
+                      },
+                      "age": {
+                        "type": "integer",
+                        "description": "The age of the person",
+                        "example": 25
+                      },
+                      "city": {
+                        "type": "string",
+                        "description": "The city where the person lives",
+                        "example": "San Diego"
+                      },
+                      "state": {
+                        "type": "string",
+                        "description": "The state where the person lives",
+                        "example": "California"
+                      },
+                      "country": {
+                        "type": "string",
+                        "description": "The country where the person lives",
+                        "example": "United States"
+                      },
+                      "hobbies": {
+                        "type": "array",
+                        "description": "List of hobbies",
+                        "items": {
+                          "type": "string"
+                        },
+                        "example": ["coding", "reading", "gaming", "hiking", "traveling"]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
