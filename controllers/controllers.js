@@ -66,6 +66,7 @@ const getCountries = (req, res) => {
 
 // CODE
 const getCodes = (req, res) => {
+  const { filter } = req.query;    // Obtain the filter parameter from the query string
   const uniqueCodes = {};
   const codes = [];
 
@@ -74,7 +75,15 @@ const getCodes = (req, res) => {
 
     if (!uniqueCodes[code]) {
       uniqueCodes[code] = true;
-      codes.push(code);
+
+      // check if the country includes the filter parameter
+      if (filter) {
+        if (code.toLowerCase().includes(filter.toLowerCase())) {
+          codes.push(code);
+        }
+      } else {
+        codes.push(code);
+      }
     }
   }
   res.json(codes);

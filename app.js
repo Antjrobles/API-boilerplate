@@ -24,7 +24,7 @@ expressOasGenerator.handleResponses(app, {});
 expressOasGenerator.handleRequests();
 
 app.listen(port, localhost, () => {
-  console.log(`server listening on ${port} on ${localhost}`)
+  console.log(`server listening on http://${localhost}:${port}`)
 });                              // Arrow function to tell the app use port and localhost as parameters and print in the console the information using template string.      
 
 
