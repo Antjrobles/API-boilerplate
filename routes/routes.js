@@ -10,10 +10,8 @@ router.get('/api/data', controller.getData);
 router.get('/api-docs/v3');
 
 // Coverage by protected areas of important sites for mountain biodiversity
-router.get('/api/protected_areas', controller.getProtectedAreas);
 router.get('/api/countries', controller.getCountries);
 router.get('/api/codes', controller.getCodes);
 
-// expressOasGenerator.handleRequests();
 
 module.exports = router;

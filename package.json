@@ -9,6 +9,7 @@
   "author": "Antonio Robles",
   "license": "ISC",
   "dependencies": {
+    "@supabase/supabase-js": "^2.33.1",
     "dotenv": "^16.1.4",
     "express": "^4.18.2",
     "express-oas-generator": "^1.0.46",
