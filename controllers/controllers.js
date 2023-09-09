@@ -1,4 +1,3 @@
-const fs = require("fs");
 const express = require("express");
 const router = express.Router();
 const { supabase } = require("../config/supabaseClient.js");
@@ -24,38 +23,6 @@ const getData = (req, res) => {
     res.send(data);
 };
 
-// Coverage by protected areas of important sites for mountain biodiversity
-const json = fs.readFileSync("./dataset/coverage.json");
-const jsonData = JSON.parse(json);
-
-
-
-// Countries
-// const getCountries = (req, res) => {
-//     const { filter } = req.query; // Obtain the filter parameter from the query string
-//     const uniqueCountries = {}; // Create an object to store the unique countries
-//     const countries = []; // Create an array to store the countries
-
-//     for (let i = 0; i < jsonData.length; i++) {
-//         const country = jsonData[i].Entity;
-
-//         // remove duplicates from the countries array
-//         if (!uniqueCountries[country]) {
-//             uniqueCountries[country] = true;
-
-//             // check if the country includes the filter parameter
-//             if (filter) {
-//                 if (country.toLowerCase().includes(filter.toLowerCase())) {
-//                     countries.push(country);
-//                 }
-//             } else {
-//                 countries.push(country);
-//             }
-//         }
-//     }
-//     res.json(countries);
-// };
-// query sample: http://192.168.0.52:3045/api/countries?filter=United
 
 const getCountries = async (req, res) => {
 
@@ -63,37 +30,32 @@ const getCountries = async (req, res) => {
         .from("countries")
         .select("*");
 
-    res.json(data); 
+    res.json(data);
 };
 
-    // CODE
-    const getCodes = (req, res) => {
-        const { filter } = req.query; // Obtain the filter parameter from the query string
-        const uniqueCodes = {};
-        const codes = [];
+// CODE
+const getCodes = async (req, res) => {
 
-        for (let i = 0; i < jsonData.length; i++) {
-            const code = jsonData[i].Code;
 
-            if (!uniqueCodes[code]) {
-                uniqueCodes[code] = true;
+    let { data, error } = await supabase
+        .from('countries')
+        .select('Code')
 
-                // check if the country includes the filter parameter
-                if (filter) {
-                    if (code.toLowerCase().includes(filter.toLowerCase())) {
-                        codes.push(code);
-                    }
-                } else {
-                    codes.push(code);
-                }
-            }
+    // Maps the data and extract the Codes removing duplicates
+    const codes = [];
+    data.forEach(entry => {
+        if (!codes.includes(entry.Code)) {
+            codes.push(entry.Code);
         }
-        res.json(codes);
-    };
+    });
 
-    module.exports = {
-        getLinks,
-        getData,
-        getCountries,
-        getCodes,
-    };
+    res.json(codes);
+
+};
+
+module.exports = {
+    getLinks,
+    getData,
+    getCountries,
+    getCodes,
+};
