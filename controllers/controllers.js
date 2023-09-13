@@ -28,7 +28,8 @@ const getCountries = async (req, res) => {
 
     const { data, error } = await supabase
         .from("countries")
-        .select("*");
+        .select("*"); // TODO select fields
+        // TODO add ordering?
 
     res.json(data);
 };
@@ -40,10 +41,16 @@ const getCodes = async (req, res) => {
     let { data, error } = await supabase
         .from('countries')
         .select('Code')
+        // TODO add  .limit, with very large data is will blow up the server memory
+        // TODO add ordering?
 
+    // TODO make use of error 5 lines above, if error, then throw an error code to the consumer
+    
     // Maps the data and extract the Codes removing duplicates
     const codes = [];
+    // TODO null check on `data`
     data.forEach(entry => {
+
         if (!codes.includes(entry.Code)) {
             codes.push(entry.Code);
         }
