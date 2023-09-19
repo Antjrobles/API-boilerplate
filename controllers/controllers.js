@@ -11,7 +11,7 @@ const getLinks = (req, res) => {
     res.send(links);
 };
 
-const getData = (req, res) => {
+const getPerson = (req, res) => {
     const data = {
         name: "John Doe",
         age: 25,
@@ -24,7 +24,7 @@ const getData = (req, res) => {
 };
 
 
-const getCountries = async (req, res) => {
+const getData = async (req, res) => {
 
     const { data, error } = await supabase
         .from("countries")
@@ -34,9 +34,26 @@ const getCountries = async (req, res) => {
     res.json(data);
 };
 
+//Countries
+const getCountries = async (req, res) => {
+
+    const { data, error } = await supabase
+        .from("countries")
+        .select("Entity");
+
+    const countries = [];
+    data.forEach(entry => {
+
+        if (!countries.includes(entry.Entity)) {
+            countries.push(entry.Entity);
+        }
+    });
+
+    res.json(countries);
+};
+
 // CODE
 const getCodes = async (req, res) => {
-
 
     let { data, error } = await supabase
         .from('countries')
@@ -45,7 +62,7 @@ const getCodes = async (req, res) => {
         // TODO add ordering?
 
     // TODO make use of error 5 lines above, if error, then throw an error code to the consumer
-    
+
     // Maps the data and extract the Codes removing duplicates
     const codes = [];
     // TODO null check on `data`
@@ -62,6 +79,7 @@ const getCodes = async (req, res) => {
 
 module.exports = {
     getLinks,
+    getPerson,
     getData,
     getCountries,
     getCodes,

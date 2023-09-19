@@ -23,8 +23,10 @@ const localhost = process.env.LOCALHOST || "localhost"; //Import LOCALHOST from 
 app.use(morgan("dev")); // log every request to the console
 app.use(cors(corsOptions)); // Enable cors
 app.use(express.json()); // parse requests of content-type - application/json
+app.use('/assets', express.static('assets'));
 app.use("/", routes); // Use routes.js
 app.use(express.static("public")); // Servir archivos estáticos desde la carpeta 'public'
+
 
 /** place handleResponses as the very first middleware */
 expressOasGenerator.handleResponses(app, {});

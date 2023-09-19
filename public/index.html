@@ -1,23 +1,32 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="style.css" />
-        <title>Express Server</title>
-    </head>
-    <body>
-        <header class="navbar">
-            <nav class="links">
-                <ul>
-                    <li><a href="/api-docs/v3">Swagger</a></li>
-                    <li><a href="/api/links">Links</a></li>
-                    <li><a href="/api/data">Data</a></li>
-                    <li><a href="/api/countries">Countries</a></li>
-                    <li><a href="/api/codes">Codes</a></li>
-                </ul>
-            </nav>
-        </header>
-        <h1>express</h1>
-    </body>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Express Server</title>
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="navbar_logo">
+            <img src="/assets/swagger.svg" alt="logo" class="logo">
+            <a href="/api-docs/v3" class="swagger">Swagger</a>
+        </div>
+
+        <nav class="links">
+            <ul>
+                <li><a href="/api/data" class="data">Data</a></li>
+                <li><a href="/api/countries">Countries</a></li>
+                <li><a href="/api/codes">Codes</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Express Server</h1>
+        <p>Express server with Swagger documentation</p>    
+    </main>
+</body>
+
 </html>
