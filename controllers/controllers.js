@@ -11,7 +11,7 @@ const getLinks = (req, res) => {
     res.send(links);
 };
 
-const getData = (req, res) => {
+const getPerson = (req, res) => {
     const data = {
         name: "John Doe",
         age: 25,
@@ -24,26 +24,50 @@ const getData = (req, res) => {
 };
 
 
+const getData = async (req, res) => {
+
+    const { data, error } = await supabase
+        .from("countries")
+        .select("*"); // TODO select fields
+        // TODO add ordering?
+
+    res.json(data);
+};
+
+//Countries
 const getCountries = async (req, res) => {
 
     const { data, error } = await supabase
         .from("countries")
-        .select("*");
+        .select("Entity");
 
-    res.json(data);
+    const countries = [];
+    data.forEach(entry => {
+
+        if (!countries.includes(entry.Entity)) {
+            countries.push(entry.Entity);
+        }
+    });
+
+    res.json(countries);
 };
 
 // CODE
 const getCodes = async (req, res) => {
 
-
     let { data, error } = await supabase
         .from('countries')
         .select('Code')
+        // TODO add  .limit, with very large data is will blow up the server memory
+        // TODO add ordering?
+
+    // TODO make use of error 5 lines above, if error, then throw an error code to the consumer
 
     // Maps the data and extract the Codes removing duplicates
     const codes = [];
+    // TODO null check on `data`
     data.forEach(entry => {
+
         if (!codes.includes(entry.Code)) {
             codes.push(entry.Code);
         }
@@ -55,6 +79,7 @@ const getCodes = async (req, res) => {
 
 module.exports = {
     getLinks,
+    getPerson,
     getData,
     getCountries,
     getCodes,

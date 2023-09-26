@@ -1,0 +1,14 @@
+version: '3.5'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: api-boilerplate
+    ports:
+      - '3045:3045'
+    volumes:
+      - .:/app
+      - /app/node_modules
+

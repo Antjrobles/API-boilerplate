@@ -3,8 +3,17 @@ const app = express(); // Create a const app to use express
 const morgan = require("morgan"); // Log every request to the console
 require("dotenv").config(); // Import dotenv to use .env file
 const routes = require("./routes/routes.js"); // Import routes.js
+const cors = require("cors"); // Import cors
 
 const expressOasGenerator = require("express-oas-generator");
+
+const corsOptions = {
+    origin: '*',
+    methods: 'GET,PUT,PATCH,POST,DELETE',
+    optionsSuccessStatus: 200,
+    credentials: true,
+};
+
 
 //Variables from .env
 const port = process.env.PORT || 3000; // Import the variable PORT from .env
@@ -12,9 +21,12 @@ const localhost = process.env.LOCALHOST || "localhost"; //Import LOCALHOST from 
 
 // APP SETUP
 app.use(morgan("dev")); // log every request to the console
+app.use(cors(corsOptions)); // Enable cors
 app.use(express.json()); // parse requests of content-type - application/json
+app.use('/assets', express.static('assets'));
 app.use("/", routes); // Use routes.js
 app.use(express.static("public")); // Servir archivos estáticos desde la carpeta 'public'
+
 
 /** place handleResponses as the very first middleware */
 expressOasGenerator.handleResponses(app, {});
