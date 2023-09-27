@@ -11,27 +11,27 @@
 <body>
     <header class="navbar">
         <div class="navbar_logo">
-            <img src="/assets/swagger.svg" alt="logo" class="logo">
+            <a href="/"><img src="/assets/swagger.svg" alt="logo" class="logo"></a>
             <a href="/api-docs/v3" class="swagger">Swagger</a>
         </div>
 
-      <!--   <nav class="links">
+        <nav class="links">
             <ul>
-                <li><a href="/api/data" class="data">Data</a></li>
-                <li><a href="/api/countries">Countries</a></li>
-                <li><a href="/api/codes">Codes</a></li>
+                <li><a href="#" class="data" data-url="/api/data">Data</a></li>
+                <li><a href="#" class="countries" data-url="/api/countries">Countries</a></li>
+                <li><a href="#" class="codes" data-url="/api/codes">Codes</a></li>
             </ul>
-        </nav> -->
+        </nav>
     </header>
     <main>
-        <div class="enlaces">
-            <a class="enlaces_data" href="/api/data">Data</a>
-            <a href="/api/countries">Countries</a>
-            <a href="/api/codes">Codes</a>
-        </div>
+
+        <div id="json-container"></div>
+
         <h1>Express Server</h1>
         <p>Express server with Swagger documentation</p>
     </main>
 </body>
+
+<script src="index.js"></script>
 
 </html>

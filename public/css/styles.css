@@ -41,18 +41,7 @@
     align-items: center;
 }
 
-.navbar .links ul {
-    display: flex;
-    list-style: none;
-}
 
-.navbar .links ul li a {
-    text-decoration: none;
-    margin-right: 20px;
-    padding: 5px 20px;
-    font-size: 1rem;
-    transition: color 0.5s ease;
-}
 
 .navbar .swagger {
     text-decoration: none;
@@ -62,48 +51,49 @@ a:hover {
     color: #fff;
 }
 
-.data {
-    transition: color 1s ease;
-    border-radius: 10px;
-    border: 0.6px solid #2f2b2b;
-}
-
-.data:hover {
-    color: #fff;
-    background-color: #2f2b2b;
-}
-
-
-main {
-    background-color: #000;
-}
-
-.enlaces {
+.links ul {
     display: flex;
-    justify-content: center;
-
+    list-style: none;
 }
 
-.enlaces a {
-    margin: 40px auto;
+.links li {
+    margin: 0 40px;
+}
+
+
+.data {
     text-decoration: none;
-    transition: color 0.5s ease;
-}
-
-
-.enlaces_data {
     transition: color 1s ease;
     border-radius: 10px;
     padding: 5px 20px;
     border: 0.6px solid #2f2b2b;
 }
-
-.enlaces_data:hover {
+.data:hover {
     color: #fff;
     background-color: #2f2b2b;
 }
 
+.countries {
+    text-decoration: none;
+    transition: color 1s ease;
+    border: none;
+}
 
+.countries:hover {
+    color: #fff;
+}
+
+.codes {
+    text-decoration: none;
+    transition: color 1s ease;
+    border: none;
+}
+.codes:hover {
+    color: #fff;
+}
+
+
+/* MAIN */
 
 h1 {
     margin-top: 100px;
