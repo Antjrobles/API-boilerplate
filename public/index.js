@@ -26,15 +26,14 @@ const fetchCodes = data.forEach(jsonData => {
         const response = await fetch(url);
         const jsonData = await response.json();
 
+
         // Get the codes from the JSON
         const codesID = jsonData.map(item => item.Code);
-        console.log(codesID);
 
 
         // Remove duplicates from the array
         const uniqueCodesSet = [...new Set(codesID)];
         const uniqueCodes = Array.from(uniqueCodesSet);
-
         // Render the Codes in an unordered list
         const listItems = uniqueCodes.map(code => {
           const listItem = document.createElement("li");
@@ -43,7 +42,8 @@ const fetchCodes = data.forEach(jsonData => {
         });
 
         // Add the list items to the unordered list
-         const list = document.getElementById("ul");
+         const list = document.getElementById("codeList");
+         console.log(list)
          listItems.forEach(listItem => list.appendChild(listItem));
 
 
